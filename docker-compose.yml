@@ -1,0 +1,12 @@
+# Runs the Telegram bot. Needs TELEGRAM_BOT_TOKEN and ALLOWED_USER_IDS in .env
+# (and OPENROUTER_API_KEY with MODE=live for real models).
+services:
+  bot:
+    build: .
+    env_file: .env
+    volumes:
+      - debates:/data
+    restart: unless-stopped
+
+volumes:
+  debates:

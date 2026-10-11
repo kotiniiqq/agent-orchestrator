@@ -1,0 +1,21 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Demo run from the command line
+        run: orchestrator ask "Do we need Kubernetes for three services?" --transcript debate.md && grep -q "## Round 4" debate.md
+      - name: Container builds
+        run: docker build -t agent-orchestrator .
