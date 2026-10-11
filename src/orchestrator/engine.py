@@ -146,8 +146,9 @@ class Deliberation:
             except _Failed as e:
                 return result(draft, False, rounds, open_obj, error=f"the moderator failed: {e}")
             draft = rev["draft"]
-            st.rulings += [x for x in rev["rulings"]
-                           if isinstance(x.get("objection"), str) and x.get("decision") in ("accepted", "rejected")]
+            for x in rev["rulings"]:
+                if isinstance(x.get("objection"), str) and x.get("decision") in ("accepted", "rejected") and x not in st.rulings:
+                    st.rulings.append(x)
 
         dissent = {} if consensus else open_obj
         try:

@@ -191,3 +191,9 @@ async def test_demo_client_plays_all_three_scenarios():
     assert seen[1].consensus and seen[1].rounds == 2 and seen[1].rulings[0]["decision"] == "accepted"
     assert not seen[2].consensus and seen[2].rounds == 4 and list(seen[2].dissent) == ["pragmatist"]
     assert all(r.warnings == [] for r in seen.values())
+
+
+async def test_repeated_rulings_are_kept_once():
+    s = Script({("pragmatist", "review"): [objects("too big")]})
+    r = await run(s, max_rounds=4)
+    assert r.rulings == [{"objection": "x", "decision": "accepted", "reason": "fair"}]
