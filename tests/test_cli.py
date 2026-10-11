@@ -30,3 +30,9 @@ def test_bad_question_and_live_without_key(capsys):
     assert "3 to 2000" in capsys.readouterr().err
     assert main(["ask", "a real question", "--live"], env={}) == 2
     assert "OPENROUTER_API_KEY" in capsys.readouterr().err
+
+
+def test_demo_output_has_no_made_up_costs_and_is_ascii_safe(capsys):
+    main(["ask", q_for(0)], env={})
+    out = capsys.readouterr().out
+    assert "tokens" not in out and "$" not in out and "·" not in out

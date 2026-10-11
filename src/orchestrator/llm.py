@@ -94,7 +94,7 @@ class DemoClient:
         q = prompts.question_of(user)
         out = self._play(role, phase, rnd, _short(q), scenario(q))
         text = json.dumps(out, ensure_ascii=False)
-        return Completion(text=text, tokens_in=len(system + user) // 4, tokens_out=len(text) // 4, usd=0.0)
+        return Completion(text=text)  # no tokens, no cost: nothing was sent anywhere
 
     def _play(self, role: str, phase: str | None, rnd: int, q: str, s: int) -> dict:
         if phase == prompts.PROPOSAL:
@@ -132,5 +132,5 @@ class DemoClient:
             reasons = ["A small working version shows real problems early.", "A flag keeps the way back short."]
             if s == 1:
                 reasons.append("One metric, checked after two weeks, decides whether to extend it.")
-            return {"decision": f"Do \"{q}\" as a small version behind a flag, and keep it cheap.", "reasons": reasons}
+            return {"decision": f"On \"{q}\": start with a small version behind a flag, and keep it cheap.", "reasons": reasons}
         return {}

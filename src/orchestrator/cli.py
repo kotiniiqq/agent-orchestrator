@@ -22,8 +22,11 @@ def _plain(r: Result) -> str:
     if r.dissent:
         lines += ["", "Dissent"] + [f"  - {role}: {o}" for role, objs in r.dissent.items() for o in objs]
     rounds = f"{r.rounds} round{'s' if r.rounds != 1 else ''}"
-    lines += ["", (f"Consensus after {rounds}" if r.consensus else f"No consensus after {rounds}")
-              + f" · ${r.usage.usd:.4f} · {r.usage.tokens_in + r.usage.tokens_out:,} tokens"]
+    status = f"Consensus after {rounds}" if r.consensus else f"No consensus after {rounds}"
+    tokens = r.usage.tokens_in + r.usage.tokens_out
+    if tokens:
+        status += f", ${r.usage.usd:.4f}, {tokens:,} tokens"
+    lines += ["", status]
     if r.error:
         lines.append(f"Stopped early: {r.error}")
     lines += [f"warning: {w}" for w in r.warnings]

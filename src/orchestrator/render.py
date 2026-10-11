@@ -11,7 +11,7 @@ LIMIT = 4096  # Telegram message length
 def _status(r: Result) -> str:
     head = f"Consensus after {r.rounds} round{'s' if r.rounds != 1 else ''}" if r.consensus else f"No consensus after {r.rounds} round{'s' if r.rounds != 1 else ''}"
     tokens = r.usage.tokens_in + r.usage.tokens_out
-    return f"{head} · ${r.usage.usd:.4f} · {tokens:,} tokens"
+    return f"{head} · ${r.usage.usd:.4f} · {tokens:,} tokens" if tokens else head
 
 
 def _split_escaped(piece: str, limit: int) -> list[str]:
