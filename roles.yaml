@@ -1,0 +1,17 @@
+# Who takes part in a debate. Participants argue and vote; the moderator merges,
+# rules on objections and writes the result, but does not vote.
+# Models are OpenRouter ids; change them to whatever you have access to.
+roles:
+  - id: architect
+    job: Propose a concrete solution and defend it with reasons. Change it when an objection is right.
+    model: anthropic/claude-sonnet-5
+  - id: critic
+    job: Look for risks, gaps and wrong assumptions. Agree only when the serious ones are handled.
+    model: openai/gpt-5
+  - id: pragmatist
+    job: Weigh cost, time and simplicity. Push for what can ship and be maintained.
+    model: google/gemini-2.5-pro
+  - id: moderator
+    job: Merge the proposals into one draft, rule on every objection, and write the final answer.
+    model: anthropic/claude-sonnet-5
+    moderator: true
