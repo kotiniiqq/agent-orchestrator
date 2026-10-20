@@ -136,6 +136,11 @@ src/orchestrator/
   cli.py, app.py, config.py
 ```
 
+## Contact
+
+Feedback, ideas, job offers or custom projects (n8n, MCP, AI automation): [kotiniiqq@gmail.com](mailto:kotiniiqq@gmail.com).
+Bug reports and feature requests are welcome in [Issues](https://github.com/kotiniiqq/agent-orchestrator/issues).
+
 ## License
 
 MIT
