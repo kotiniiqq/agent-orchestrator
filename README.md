@@ -6,6 +6,8 @@ the decision, the reasons, and every objection that was still open at the end. A
 averaged away. The full debate is one tap away. It runs as a Telegram bot or from the command line, and
 **without any API keys** in demo mode.
 
+<img src="https://raw.githubusercontent.com/kotiniiqq/agent-orchestrator/main/docs/assets/overview.svg" width="640" alt="agent-orchestrator flow">
+
 > I built the original as a personal tool, a Telegram bot that sped up my own design decisions. Its
 > code was lost, so this repo is a rebuild from scratch. It keeps what defined the original: one bot,
 > the debate happens inside it, the roles and their models are fixed, rounds continue until everyone
